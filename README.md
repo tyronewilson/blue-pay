@@ -10,7 +10,7 @@ Additional sample code available in the test directory of the gem.
 
 ## Example
 
-```
+```ruby
 require "bluepay"
 
 $ACCOUNT_ID = "MERCHANT'S ACCOUNT ID HERE"
