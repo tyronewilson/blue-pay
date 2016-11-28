@@ -11,7 +11,7 @@ class BluePay
   # Turns a hash into a nvp style string
   def uri_query(param_hash)
     array = []
-    param_hash.each_pair {|key, val| array << (URI.escape(key) + "=" + URI.escape(val))}
+    param_hash.compact.each_pair {|key, val| array << (URI.escape(key) + "=" + URI.escape(val))}
     uri_query_string = array.join("&")
     return uri_query_string
   end
