@@ -11,48 +11,56 @@ Additional sample code available in the test directory of the gem.
 ## Example
 
 ```ruby
-require "bluepay"
+require 'blue-pay'
 
-$ACCOUNT_ID = "MERCHANT'S ACCOUNT ID HERE"
-$SECRET_KEY = "MERCHANT'S SECRET KEY HERE"
-$MODE = "TEST"
+ACCOUNT_ID = "Merchant's Account ID Here"
+SECRET_KEY = "Merchant's Secret Key Here"
+MODE = "TEST"
 
-payment = BluePayPayment.new(
-  $ACCOUNT_ID,
-  $SECRET_KEY,
-  $MODE)
-
-payment.set_cc_information(
-  "4111111111111111",
-  "1215",
-  "123")
+payment = BluePay.new(
+  account_id: ACCOUNT_ID,
+  secret_key: SECRET_KEY,
+  mode: MODE
+)
 
 payment.set_customer_information(
-  "Bob",
-  "Tester",
-  "123 Test St.",
-  "Testville",
-  "IL",
-  "54321",
-  "Apt #500",
-  "USA")
+  first_name: "Bob",
+  last_name: "Tester",
+  address1: "123 Test St.",
+  address2: "Apt #500",
+  city: "Testville",
+  state: "IL",
+  zip_code: "54321",
+  country: "USA",
+  phone: "123-123-1234",
+  email: "test@bluepay.com"
+)
 
-payment.sale("3.00")
+payment.set_cc_information(
+  cc_number: "4111111111111111", # Customer Credit Card Number
+  cc_expiration: "1215", # Card Expiration Date: MMYY
+  cvv2: "123" # Card CVV2
+)
 
-response = payment.process()
+payment.auth(amount: "0.00") # Card Authorization amount: $0.00
 
-if (payment.get_status() == "APPROVED") then
-  puts "TRANSACTION STATUS: " + payment.get_status()
-  puts "TRANSACTION MESSAGE: " + payment.get_message()
-  puts "TRANSACTION ID: " + payment.get_trans_id()
-  puts "AVS RESPONSE: " + payment.get_avs_code()
-  puts "CVV2 RESPONSE: " + payment.get_cvv2_code()
-  puts "MASKED PAYMENT ACCOUNT: " + payment.get_masked_account()
-  puts "CARD TYPE: " + payment.get_card_type()
-  puts "AUTH CODE: " + payment.get_auth_code()
+# Makes the API request with BluePay
+payment.process
+
+# If transaction was successful reads the responses from BluePay
+if payment.successful_transaction?
+  puts "TRANSACTION STATUS: " + payment.get_status
+  puts "TRANSACTION MESSAGE: " + payment.get_message
+  puts "TRANSACTION ID: " + payment.get_trans_id
+  puts "AVS RESPONSE: " + payment.get_avs_code
+  puts "CVV2 RESPONSE: " + payment.get_cvv2_code
+  puts "MASKED PAYMENT ACCOUNT: " + payment.get_masked_account
+  puts "CARD TYPE: " + payment.get_card_type
+  puts "AUTH CODE: " + payment.get_auth_code
 else
-  puts payment.get_message()
+  puts payment.get_message
 end
+
 ```
 
 
