@@ -1,4 +1,4 @@
-== Welcome to Bluepay
+## Welcome to Bluepay
 
 Bluepay is used to process credit cards and ACH transactions using the BluePay Gateway.
 
@@ -8,8 +8,9 @@ ACH transactions through a virtual terminal and various API/SDK/Payment Interfac
 To apply for a BluePay merchant account and payment gateway, visit http://www.bluepay.com.
 Additional sample code available in the test directory of the gem.
 
-== Example
+## Example
 
+```
 require "bluepay"
 
 $ACCOUNT_ID = "MERCHANT'S ACCOUNT ID HERE"
@@ -52,10 +53,12 @@ if (payment.get_status() == "APPROVED") then
 else
   puts payment.get_message()
 end
+```
 
-== About
 
-Author::    Justin Slingerland
-ReadmeDoc:: Justin Slingerland
+
+## About
+
+Author::    Tyrone Wilson (Originally: Justin Slingerland)
 Copyright:: Copyright (c) 2016 BluePay, Inc.
 License::   GPL - GNU General Public License - http://www.gnu.org/licenses/gpl.html
