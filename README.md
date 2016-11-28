@@ -11,7 +11,7 @@ Additional sample code available in the test directory of the gem.
 ## Example
 
 ```ruby
-require 'blue-pay'
+require 'blue_pay'
 
 ACCOUNT_ID = "Merchant's Account ID Here"
 SECRET_KEY = "Merchant's Secret Key Here"

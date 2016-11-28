@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
-  s.name        = 'blue-pay'
+  s.name        = 'blue_pay'
   s.version     = '1.0'
-  s.date        = '2016-11-15'
+  s.date        = '2016-11-28'
   s.summary     = "BluePay gateway rubygem (fixed up for SSL to use ENV)"
   s.description = "This gem is intended to be used along with a BluePay gateway account to process credit card and ACH transactions"
   s.authors     = ["Justin Slingerland, Susan Schmidt, Tyrone Wilson"]
