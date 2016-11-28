@@ -1,5 +1,9 @@
 class BluePay
 
+  SERVER = "secure.bluepay.com"
+  # Make sure this is the correct path to your CA certificates directory
+  RootCA = ENV['SSL_CERT_DIR'] || "/"
+
   # Turns a hash into a nvp style string
   def uri_query(param_hash)
     array = []
@@ -69,7 +73,7 @@ class BluePay
 
     ua = Net::HTTP.new(SERVER, 443)
     ua.use_ssl = true
-    binding.pry
+
     # Checks presence of CA certificate
     if File.directory?(RootCA)
       ua.ca_path = RootCA
