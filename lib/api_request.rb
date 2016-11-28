@@ -79,13 +79,9 @@ class BluePay
     ua.use_ssl = true
 
     # Checks presence of CA certificate
-    if File.directory?(RootCA)
-      ua.ca_file = RootCA
-      ua.verify_mode = OpenSSL::SSL::VERIFY_PEER
-      ua.verify_depth = 3
-    else
-      raise "Invalid CA certificates directory. Exiting..."
-    end
+    ua.ca_file = RootCA
+    ua.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    ua.verify_depth = 3
 
     # Sets REMOTE_IP parameter
     begin
