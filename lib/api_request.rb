@@ -2,7 +2,11 @@ class BluePay
 
   SERVER = "secure.bluepay.com"
   # Make sure this is the correct path to your CA certificates directory
-  RootCA = ENV['SSL_CERT_DIR'] || "/"
+  RootCA = ENV['SSL_CERT_FILE']
+
+  unless RootCA
+    raise "You must specify the location of ENV['SSL_CERT_FILE']"
+  end
 
   # Turns a hash into a nvp style string
   def uri_query(param_hash)
@@ -76,12 +80,11 @@ class BluePay
 
     # Checks presence of CA certificate
     if File.directory?(RootCA)
-      ua.ca_path = RootCA
+      ua.ca_file = RootCA
       ua.verify_mode = OpenSSL::SSL::VERIFY_PEER
       ua.verify_depth = 3
     else
-      puts "Invalid CA certificates directory. Exiting..."
-      exit
+      raise "Invalid CA certificates directory. Exiting..."
     end
 
     # Sets REMOTE_IP parameter
