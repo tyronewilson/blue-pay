@@ -79,6 +79,14 @@ class BluePay
     @api = "bp10emu"
   end
 
+  # Void
+  def credit(params = {})
+    @PARAM_HASH['TRANSACTION_TYPE'] = 'CREDIT'
+    @PARAM_HASH['AMOUNT'] = params[:amount]
+    @PARAM_HASH['RRNO'] = params[:trans_id]
+    @api = "bp10emu"
+  end
+
   # Sets payment information for a swiped credit card transaction
   def swipe(track_data)
     @PARAM_HASH['SWIPE'] = track_data
