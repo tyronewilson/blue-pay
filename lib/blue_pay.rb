@@ -79,7 +79,7 @@ class BluePay
     @api = "bp10emu"
   end
 
-  # Void
+  # Credit
   def credit(params = {})
     @PARAM_HASH['TRANSACTION_TYPE'] = 'CREDIT'
     @PARAM_HASH['AMOUNT'] = params[:amount]
